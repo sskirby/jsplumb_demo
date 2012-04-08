@@ -1,6 +1,7 @@
 jQuery(function($) {
   $( ".resizable" ).resizable({
     handles: 'se',
+    grid: [10, 10],
     resize: function(event, ui) {
       jsPlumb.repaint(event.target.id);
     }
@@ -19,7 +20,7 @@ jsPlumb.ready(function() {
   jsPlumb.Defaults.EndpointHoverStyle = { fillStyle:'red' };
 
   // enable draggin of elements (seems to just delegate to jQuery UI)
-  jsPlumb.draggable($(".draggable"), {handle: "span", containment: "parent"});
+  jsPlumb.draggable($(".draggable"), {handle: "span", containment: "parent", grid: [10, 10]});
 
   // add existing connections
   jsPlumb.connect({
