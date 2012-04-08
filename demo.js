@@ -37,10 +37,7 @@ jsPlumb.ready(function() {
     maxConnections:50
   };
 
-  var sourceOptions = {
-    isSource: true,
-    parent: '.element'
-  };
+  var sourceOptions = { isSource: true };
   $(".element").each(function(index) {
     jsPlumb.makeTarget($(this), targetOptions);
     jsPlumb.makeSource($(this).find('.connector-source'), {parent: $(this)}, sourceOptions);
