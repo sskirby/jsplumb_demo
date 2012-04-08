@@ -1,5 +1,5 @@
 jQuery(function($) {
-  $( ".resizable" ).resizable();
+  $( ".resizable" ).resizable({handles: 'se'});
 });
 
 jsPlumb.ready(function() {
