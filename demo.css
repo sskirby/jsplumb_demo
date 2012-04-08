@@ -8,6 +8,7 @@ div.element {
 
 div.element span {
   background-color: #FEE0C6;
+  cursor:move;
 }
 
 #drawing-area {
@@ -20,4 +21,8 @@ div.element span {
 
 div.connector-label {
   padding-bottom: 10px;
+}
+
+div.connector-source {
+  cursor:pointer;
 }

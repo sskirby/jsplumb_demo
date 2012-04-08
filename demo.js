@@ -29,12 +29,14 @@ jsPlumb.ready(function() {
     isTarget:true, 
     maxConnections:50
   };
+
   var sourceOptions = {
-    isSource: true
+    isSource: true,
+    parent: '.element'
   };
   $(".element").each(function(index) {
     jsPlumb.makeTarget($(this), targetOptions);
-    jsPlumb.makeSource($(this), sourceOptions);
+    jsPlumb.makeSource($(this).find('.connector-source'), {parent: $(this)}, sourceOptions);
   });
 
   // bind events
