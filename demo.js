@@ -16,6 +16,7 @@ jsPlumb.ready(function() {
   jsPlumb.Defaults.ConnectionOverlays = [["PlainArrow", {location: 1.0, width: 10, length: 20}]];
   jsPlumb.Defaults.Endpoint = "Rectangle";
   jsPlumb.Defaults.EndpointStyle = { width:10, height:10, fillStyle:'#666' };
+  jsPlumb.Defaults.EndpointHoverStyle = { fillStyle:'red' };
 
   // enable draggin of elements (seems to just delegate to jQuery UI)
   jsPlumb.draggable($(".draggable"), {handle: "span", containment: "parent"});
