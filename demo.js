@@ -8,6 +8,27 @@ jQuery(function($) {
   });
 });
 
+var Helper = function() {
+    var ns = {
+      svg:"http://www.w3.org/2000/svg",
+      xhtml:"http://www.w3.org/1999/xhtml"
+    },
+    _attr = function(node, attributes) {
+      for (var i in attributes)
+        node.setAttribute(i, "" + attributes[i]);
+    };
+  return {
+    createNode: function(name, attributes) {
+      var n = document.createElementNS(ns.svg, name);
+      attributes = attributes || {};
+      //attributes["version"] = "1.1";
+      //attributes["xmlns"] = ns.xhtml;
+      _attr(n, attributes);
+      return n;
+    }
+  }
+}();
+
 jsPlumb.ready(function() {
   console.log(jsPlumb.Defaults);
   jsPlumb.Defaults.Container = $("#drawing-area");
@@ -23,13 +44,26 @@ jsPlumb.ready(function() {
   jsPlumb.draggable($(".draggable"), { handle: "span", containment: "parent", grid: [10, 10] });
 
   // add existing connections
-  jsPlumb.connect({
+  var connector = jsPlumb.connect({
     source: "tenant-1", 
     target: "tenant-2",
     overlays: [
       ["Label", { label: "Standard Label", location: 0.5, cssClass: "connector-label" }]
     ]
   });
+
+  // experimental code to use textPath for labels
+  var $svg = $(connector.canvas);
+  var $path = $svg.find('path:first-child');
+  $path.prop('id', 'MyPath7');
+
+  var textNode = Helper.createNode('text');
+  var textPathNode = Helper.createNode('textPath', { 'text-anchor': 'middle', startOffset: '50%' });
+  textPathNode.setAttributeNS("http://www.w3.org/1999/xlink", 'href', '#MyPath7');
+  textNode.appendChild(textPathNode);
+  var textPathText = document.createTextNode('Text that follows the connector');
+  textPathNode.appendChild(textPathText);
+  $svg[0].appendChild(textNode);
 
   // enable drag and drop connections
   var targetOptions = { 
