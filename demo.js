@@ -1,5 +1,10 @@
 jQuery(function($) {
-  $( ".resizable" ).resizable({handles: 'se'});
+  $( ".resizable" ).resizable({
+    handles: 'se',
+    resize: function(event, ui) {
+      jsPlumb.repaint(event.target.id);
+    }
+  });
 });
 
 jsPlumb.ready(function() {
