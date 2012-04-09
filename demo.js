@@ -31,14 +31,15 @@ var Helper = function() {
 
 jsPlumb.ready(function() {
   console.log(jsPlumb.Defaults);
-  jsPlumb.Defaults.Container = $("#drawing-area");
-  jsPlumb.Defaults.Anchor = "Continuous";
-  jsPlumb.Defaults.PaintStyle = { lineWidth: 1, strokeStyle: "#666" };
-  jsPlumb.Defaults.Connector = "Straight";
-  jsPlumb.Defaults.ConnectionOverlays = [["PlainArrow", {location: 1.0, width: 10, length: 20}]];
-  jsPlumb.Defaults.Endpoint = "Rectangle";
-  jsPlumb.Defaults.EndpointStyle = { width:10, height:10, fillStyle:'#666' };
-  jsPlumb.Defaults.EndpointHoverStyle = { fillStyle:'red' };
+  jsPlumb.importDefaults({
+    Container: $("#drawing-area"),
+    Anchor: "Continuous",
+    PaintStyle: { lineWidth: 1, strokeStyle: "#666" },
+    Connector: "Straight",
+    ConnectionOverlays: [["PlainArrow", {location: 1.0, width: 10, length: 20}]],
+    Endpoint: "Rectangle",
+    EndpointStyle: { width:10, height:10, fillStyle:'#666' },
+    EndpointHoverStyle: { fillStyle:'red' } });
 
   // enable draggin of elements (seems to just delegate to jQuery UI)
   jsPlumb.draggable($(".draggable"), { handle: "span", containment: "parent", grid: [10, 10] });
